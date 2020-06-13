@@ -5,17 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Coding Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css" />
+
   </head>
   <body>
-    <div class="scores">
-        <p>View Highscores</p>
-    </div>
-    <div class="beginquiz">
-        <p>Placeholder for Coding Quiz title and introblurb</p>       
-    </div>
-    <div class="time">
-        <p>Time:</p>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="scores">
+            <p>View Highscores</p>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="time">
+            <p>Time:</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="beginquiz">
+            <h2>Coding Quiz Challenge</h2>
+            <p>Try to answer the following code-related questions within the time limit.<br>
+             Keep in mind that incorrect answers will penalize your time by ten seconds!</p>     
+            <button type="start">Start Quiz</button>  
+          </div>
+        </div>
+      </div>
     </div>
     <script src="script.js"></script>
 
