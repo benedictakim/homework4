@@ -1,12 +1,44 @@
-//pseudocode
+//click "Start Quiz" - timer counts down from 75 seconds or 75,000 msec
+//var quiztime = "75000"
+// document.getElementById("start").onclick = function timer (){
+//  (quiztime - 1000) % 60;
+// }
 
-//click "Start Quiz" - timer counts down from 75 seconds or 75,0000 msec
-var quiztime = "75000"
-document.getElementById("start").onclick = function (){
- 
+var anyquestions = document.getElementById("questions");
+var currentquestionsIndex = 0;
+var choices = document.getElementById("choices");
+
+//hide start screen, unhide the question section, then start timer, then show start time;; show all questions 
+var startquiz = document.getElementById("start");
+//startquiz.addEventListener("click", timer);
+startquiz.addEventListener("click", hidestart);
+startquiz.addEventListener("click", questiondisplay);
+
+//startquiz functions
+
+//funtion timer ();
+
+function hidestart() {
+    var startscreen = document.getElementById("startscreen");
+    startscreen.setAttribute("class", "hide");
+    document.getElementById("questions").removeAttribute("class");
 }
 
-//Click "Start Quiz" - display question
+function questiondisplay () {
+    var currentquestion = questions[currentquestionsIndex];
+    var questiontitleelement = document.getElementById("questiontitle");
+    questiontitleelement.textContent = currentquestion.title;
+    choices.innerHTML="";
+    currentquestion.choices.forEach(function (choices, i) {
+        var choicebutton = document.createElement("button");
+        choicebutton.setAttribute("class", "choices");
+        choicebutton.setAttribute("value", choices);
+        choicebutton.textContent= i+1+". "+choices;
+    });
+}
+
+//.appendchild
+
 
 //Answer question, display right/wrong answer, display next question
 
@@ -25,4 +57,3 @@ document.getElementById("start").onclick = function (){
 
 
 
-<script src="questions.js"></script>

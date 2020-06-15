@@ -1,8 +1,8 @@
-.beginquiz {
+.start{
     text-align: center;
     padding-top: 50px;
 }
 
-.h2 {
-    padding-bottom: 30px;
+.hide{
+    display:none;
 }
