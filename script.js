@@ -11,8 +11,13 @@ startquiz.addEventListener("click", questiondisplay);
 function timer () {
     var starttimer = document.getElementById("timeplaceholder");
     starttimer.setAttribute("class", "hide");
-    document.getElementById("time");
-    time.textConent="Time START";
+    var timedisplay = document.getElementById("timeleftdisplay");
+    timeleftdisplay.removeAttribute("class");
+    var timer=setInterval(timertimer, 1000); 
+    function timertimer() {
+        timeleft=timeleft-1;
+        timeleftdisplay.textContent = "Time: "+timeleft;
+    }
 }
 
 //help from tutor
@@ -22,7 +27,7 @@ function hidestart() {
     document.getElementById("questions").removeAttribute("class");
 }
 
-//help from tutor
+//help from tutor and troubleshoot during officehour
 function questiondisplay () {
     var currentquestion = questions[currentquestionsIndex];
     var questiontitleelement = document.getElementById("questiontitle");
