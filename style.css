@@ -6,3 +6,7 @@
 .hide{
     display:none;
 }
+
+.button{
+    btn btn-primary;
+}

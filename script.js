@@ -1,29 +1,28 @@
-//click "Start Quiz" - timer counts down from 75 seconds or 75,000 msec
-//var quiztime = "75000"
-// document.getElementById("start").onclick = function timer (){
-//  (quiztime - 1000) % 60;
-// }
-
 var anyquestions = document.getElementById("questions");
 var currentquestionsIndex = 0;
 var choices = document.getElementById("choices");
+var timeleft = 75;
 
-//hide start screen, unhide the question section, then start timer, then show start time;; show all questions 
 var startquiz = document.getElementById("start");
-//startquiz.addEventListener("click", timer);
+startquiz.addEventListener("click", timer);
 startquiz.addEventListener("click", hidestart);
 startquiz.addEventListener("click", questiondisplay);
 
-//startquiz functions
+function timer () {
+    var starttimer = document.getElementById("timeplaceholder");
+    starttimer.setAttribute("class", "hide");
+    document.getElementById("time");
+    time.textConent="Time START";
+}
 
-//funtion timer ();
-
+//help from tutor
 function hidestart() {
     var startscreen = document.getElementById("startscreen");
     startscreen.setAttribute("class", "hide");
     document.getElementById("questions").removeAttribute("class");
 }
 
+//help from tutor
 function questiondisplay () {
     var currentquestion = questions[currentquestionsIndex];
     var questiontitleelement = document.getElementById("questiontitle");
@@ -34,10 +33,11 @@ function questiondisplay () {
         choicebutton.setAttribute("class", "choices");
         choicebutton.setAttribute("value", choices);
         choicebutton.textContent= i+1+". "+choices;
+        document.getElementById("choices").append(choicebutton);
     });
 }
 
-//.appendchild
+
 
 
 //Answer question, display right/wrong answer, display next question
