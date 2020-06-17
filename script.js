@@ -3,6 +3,7 @@ var currentquestionsIndex = 0;
 var choices = document.getElementById("choices");
 var timeleft = 75;
 
+//<-----Start Quiz------------------------------------>
 var startquiz = document.getElementById("start");
 startquiz.addEventListener("click", timer);
 startquiz.addEventListener("click", hidestart);
@@ -20,14 +21,14 @@ function timer () {
     }
 }
 
-//help from tutor
+//(help from tutor)
 function hidestart() {
     var startscreen = document.getElementById("startscreen");
     startscreen.setAttribute("class", "hide");
     document.getElementById("questions").removeAttribute("class");
 }
 
-//help from tutor and troubleshoot during officehour
+//(help from tutor and troubleshoot during officehour but need to fix list display of choices)
 function questiondisplay () {
     var currentquestion = questions[currentquestionsIndex];
     var questiontitleelement = document.getElementById("questiontitle");
@@ -42,12 +43,25 @@ function questiondisplay () {
     });
 }
 
+//<------------------Progressing through the quiz-------------------------------------->
 
-
-
-//Answer question, display right/wrong answer, display next question
-
-//if wrong answer, decrease timer by 10 seconds or 10,000 msec
+//On choicesubmit: display right/wrong answer, display next question, 10 seconds off if wrong (needs to be debugged)
+function rightwrong () {
+    var choiceclicked = document.getElementById("button.choices").addEventListener("click");
+    var currentanswer = answer[currentanswersIndex];
+    if (choiceclicked === currentanswer) {
+      answer.textContent = "Correct!"
+    } else {
+      answer.textContent = "Wrong!"
+      function decreasetime () {
+        var timer=setInterval(timertimer, 1000); 
+        function timertimer() {
+          timeleft=timeleft-10;
+          timeleftdisplay.textContent = "Time: "+timeleft;
+        }
+      }
+    }
+}
 
 //if all questions answered or timer is 0, game over
 
