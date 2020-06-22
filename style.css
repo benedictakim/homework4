@@ -7,10 +7,11 @@
     display:none;
 }
 
-.choices{
-    list-style-position: ;
+.choices button{
+    display: block;
 }
 
 .answer{
     font-style: italic;
 }
+
