@@ -13,7 +13,7 @@ startquiz.addEventListener("click", questiondisplay);
 function timer () {
     var starttimer = document.getElementById("timeplaceholder");
     starttimer.setAttribute("class", "hide");
-        timeleftdisplay.removeAttribute("class");
+    timeleftdisplay.removeAttribute("class");
     var timer=setInterval(timertimer, 1000); 
     function timertimer() {
         timeleft=timeleft-1;
@@ -45,52 +45,55 @@ function questiondisplay () {
 //On choicesubmit: display right/wrong answer, display next question, 10 seconds off if wrong (needs to be debugged)
 function rightwrong () {
    var choiceclicked = document.getElementById("choices");
-   var currentquestions = [currentquestionsIndex];
-    if (this.value !== currentquestions.answer) {
-      answer.textContent = "Wrong!"
+   var currentanswers = questions[currentquestionsIndex];
+   var line = document.getElementById("line");
+   line.removeAttribute("class");
+    if (this.value !== questions.answer) {
+      answer.textContent = "Wrong!";
       timeleft-=10
       if (timeleft<0){
         timeleft=0;
-      }
-      timeleftdisplay.textContent=timeleft;
-      function decreasetime () {
-        var timer=setInterval(timertimer, 1000); 
-        function timertimer() {
-          timeleft=timeleft-10;
-          timeleftdisplay.textContent = "Time: "+timeleft;
-        }
-      }
+      };
     }else{
       answer.textContent = "Correct!"      
-        }
-        currentquestionsIndex++
-        if (currentquestionsIndex===questions.length){
-          endquiz();
-        }else{
-          questiondisplay();
-        }
+      };
+currentquestionsIndex++
+    if (currentquestionsIndex===questions.length || timeleft==0) {
+      endquiz();
+    }else{
+      questiondisplay();
+    }
 }
 
-//game over, enter name and save name and score, then save score to local storage and then display high score page
+//game over screen (need to debug - clock does not stop)
 function endquiz () {
-  clearInterval(timeleft);
-  var alldonescreen = getElementById("gameover");
+  clearInterval(timer);
+  function timerstop() {
+    timeleft=timeleft;
+    timeleftdisplay.textContent = "Time: "+timeleft;
+  };
+  var endofquestions = document.getElementById("questions");
+  endofquestions.setAttribute("class", "hide");
+  var alldonescreen = document.getElementById("gameover");
   alldonescreen.removeAttribute("class");
-  var finalscore = getElementById("finalscore");
+  var finalscore = document.getElementById("finalscore");
   finalscore.textContent = `Your final score is ${timeleft}`;
   anyquestions.setAttribute("class", "hide");
+  var savescore = document.getElementById("button");
+  savescore.addEventListener("click", savehighscore);
 }
 
+//(eventlistener needs to be debugged + probably local storage + toggles to go back/play again and clear high score)
 function savehighscore (){
+  var unhidescores = document.getElementById("highscore")
+  unhidescores.removeAttribute("class");
   var initials=document.getElementById("initials").value.trim();
   if (initials !== ""){
-
-  }
+    let scoresArray = []
+    localStorage.setItem('timeleft', JSON.stringify(scoresArray))
+    const data = JSON.parse(localStorage.getItem('initials'))
+    var unhidescores = document.getElementById("highscore");
+    unhidescores.removeAttribute("class");
+    scoresandinitials.textContent = 'timeleft' + 'iniitals';
+  };
 }
-//high score page: display name and score with button to "go back"/"play again" and "clear high score"
-
-//local storage.set item and local storage.
-
-
-
-
