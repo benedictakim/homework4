@@ -42,13 +42,17 @@ function questiondisplay () {
     });    
 }
 
-//On choicesubmit: display right/wrong answer, display next question, 10 seconds off if wrong (needs to be debugged)
+//On choicesubmit: display right/wrong answer, display next question, 10 seconds off if wrong
 function rightwrong () {
    var choiceclicked = document.getElementById("choices");
    var currentanswers = questions[currentquestionsIndex];
    var line = document.getElementById("line");
    line.removeAttribute("class");
-    if (this.value !== questions.answer) {
+console.log (this);
+console.log (currentanswers)
+    if (this.value !== currentanswers.answer) {
+      console.log (this);
+      console.log (currentanswers.answer);
       answer.textContent = "Wrong!";
       timeleft-=10
       if (timeleft<0){
