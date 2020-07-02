@@ -83,21 +83,29 @@ function endquiz () {
   var finalscore = document.getElementById("finalscore");
   finalscore.textContent = `Your final score is ${timeleft}`;
   anyquestions.setAttribute("class", "hide");
-  var savescore = document.getElementById("button");
-  savescore.addEventListener("click", savehighscore);
 }
 
-//(eventlistener needs to be debugged + probably local storage + toggles to go back/play again and clear high score)
+//score save
 function savehighscore (){
-  var unhidescores = document.getElementById("highscore")
-  unhidescores.removeAttribute("class");
   var initials=document.getElementById("initials").value.trim();
   if (initials !== ""){
-    let scoresArray = []
-    localStorage.setItem('timeleft', JSON.stringify(scoresArray))
-    const data = JSON.parse(localStorage.getItem('initials'))
-    var unhidescores = document.getElementById("highscore");
-    unhidescores.removeAttribute("class");
-    scoresandinitials.textContent = 'timeleft' + 'iniitals';
+    var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+    console.log(highscores)
+    var newscore = {
+      score: timeleft,
+      initials: initials
+    }
+    highscores.push(newscore);
+    window.localStorage.setItem("highscores", JSON.stringify(highscores));
+    window.location.href = "highscores.html";
+    console.log(highscores)
   };
 }
+
+function checkForEnter (event){
+  if (event.key == "Enter") {
+    savehighscore();
+  }
+}
+submit.onclick = savehighscore;
+initials.onkeyup = checkForEnter;
